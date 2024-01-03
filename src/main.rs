@@ -1,5 +1,5 @@
 use crossterm::{
-    event::{self, KeyCode, KeyEventKind},
+    event::{self},
     terminal::{
         disable_raw_mode, enable_raw_mode, EnterAlternateScreen,
         LeaveAlternateScreen,
@@ -12,7 +12,7 @@ use ratatui::{
     widgets::{Block, Borders, List, Paragraph}, style::{Style, Color},
 };
 use core::fmt;
-use std::{io::{stdout, Result, Error}, result};
+use std::io::{stdout, Result, Error};
 use sysinfo::System;
 
 
@@ -20,8 +20,6 @@ use sysinfo::System;
 struct MyError;
 
 
-enum ShownPage{
-}
 impl fmt::Display for MyError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "Custom error occurred")
@@ -40,7 +38,6 @@ impl From<MyError> for Error {
 
 fn main() -> Result<()> {
 
-    let message = "This is a modal-like overlay. Press 'Esc' to close.";
 
     let mut is_modal_open = false;
     let log_path = "app_log.log";
